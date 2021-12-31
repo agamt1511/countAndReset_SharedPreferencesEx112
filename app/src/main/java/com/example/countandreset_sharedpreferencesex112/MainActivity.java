@@ -68,20 +68,32 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Button:
-     * Short description - Saves data and exits the app.
+     * Short description - Exits the app.
      * <p>
      *
      * @param view
      * @return none
      */
     public void exit(View view) {
+        finish();
+    }
+
+    /**
+     * onPause:
+     * Short description - Saves data and exits the app.
+     * <p>
+     *
+     * @return none
+     */
+    @Override
+    protected void onPause() {
         editText = et.getText().toString();
         SharedPreferences settings=getSharedPreferences("Details",MODE_PRIVATE);
         SharedPreferences.Editor editor=settings.edit();
         editor.putInt("points",counter);
         editor.putString("text",editText);
         editor.commit();
-        finish();
+        super.onPause();
     }
 
     /**
